@@ -1,0 +1,32 @@
+version: '1'
+services:
+  odoo:
+    image: odoo:16
+    depends_on:
+      - db
+    ports:
+      - "8070:8069"
+    volumes:
+      - data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ../addons:/mnt/extra-addons
+    ### command: odoo -c /etc/odoo/odoo.conf -i base
+	### ex:
+	### -i base : init database
+	### -u MODULE_NAME : update module
+  db:
+    image: postgres:16
+    env_file: .env
+    ports:
+      - "5433:5432"
+	environment:
+	  - POSTGRES_DB=POSTGRES_DATABASE
+	  - POSTGRES_USER=POSTGRES_USER
+	  - POSTGRES_PASSWORD=POSTGRES_PASSWORD
+	  - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+    restart: always
+volumes:
+  data:
+  db:
