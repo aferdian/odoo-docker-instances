@@ -7,9 +7,10 @@ Ready to use Odoo Docker Container (single/multiple instances)
 
 ## How To Use
 
+Make sure Docker & Docker Compose is installed
+
 - Clone this repository
 - cd to odoo folder
-- Make sure Docker & Docker Compose is installed
 - Set the postgres environment in [docker-compose.yml](odoo/docker-compose.yml)
 	+ POSTGRES_DB
 	+ POSTGRES_USER
@@ -22,7 +23,8 @@ Ready to use Odoo Docker Container (single/multiple instances)
 - Run `docker compose up -d`
 - Open [http://127.0.0.1:8070/](http://127.0.0.1:8070)
 
-- If it shows `Error 500` and the logs in `docker compose logs` shows "_Database not initialized_", Stop docker instance by running `docker compose stop`
+If it shows `Error 500` and the logs in `docker compose logs` shows "_Database not initialized_", Stop docker instance by running `docker compose stop`
+
 - Run `docker compose run web bash` followed by `odoo --init base --database POSTGRESS_DB --stop-after-init --db_host=POSTGRESS_SERVICE_NAME --db_user POSTGRES_USER --db_password POSTGRES_PASSWORD`
 - Exit bash and Run `docker compose restart`
 
