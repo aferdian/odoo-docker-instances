@@ -9,7 +9,8 @@ services:
     volumes:
       - data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ../addons:/mnt/extra-addons
+      - ./addons:/mnt/extra-addons
+      - ../shared:/mnt/shared-addons
     ### command: odoo -c /etc/odoo/odoo.conf -i base
 	### ex:
 	### -i base : init database
