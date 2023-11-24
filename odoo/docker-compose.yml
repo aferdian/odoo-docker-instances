@@ -1,25 +1,24 @@
 version: '1'
 services:
-  odoo:
-    image: odoo:16
+  odoo: # ODOO SERVICE NAME
+    image: odoo:16 # ODOO VERSION
     depends_on:
-      - db
+      - db # POSTGRES INSTANCE NAME
     ports:
-      - "8070:8069"
+      - "8070:8069" # ODOO PORT | HOST_PORT:CONTAINER_PORT
     volumes:
       - data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
       - ../shared:/mnt/shared-addons
-    ### command: odoo -c /etc/odoo/odoo.conf -i base
-	### ex:
-	### -i base : init database
-	### -u MODULE_NAME : update module
-  db:
-    image: postgres:16
-    env_file: .env
+    # command: odoo -c /etc/odoo/odoo.conf
+    ### command to use while executing odoo-bin
+    ### ex:
+    ### -u MODULE_NAME : update module
+  db: # POSTGRES SERVICE NAME
+    image: postgres:16 # POSTGRES VERSION
     ports:
-      - "5433:5432"
+      - "5433:5432" # POSTGRES PORT | HOST_PORT:CONTAINER_PORT
 	environment:
 	  - POSTGRES_DB=POSTGRES_DATABASE
 	  - POSTGRES_USER=POSTGRES_USER
